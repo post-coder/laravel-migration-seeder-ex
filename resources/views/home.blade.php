@@ -3,9 +3,11 @@
 @section('content')
 
 <div class="container py-5">
-    <h1>Trenitalia</h1>
+    <h1 class="mb-4">Trenitalia</h1>
 
-    {{-- @dump($trains) --}}
+    @dump($trains)
+
+    <h2>Treni per oggi</h2>
     <table class="table">
         <thead>
           <tr>
@@ -18,7 +20,7 @@
         </thead>
         <tbody>
             @foreach ($trains as $train)
-            <tr>
+            <tr class="{{ $train->is_on_time ? 'table-warning' : '' }} {{$train->is_cancelled ? 'table-danger' : ''}}">
                 <td>{{$train->company}}</td>
                 <td>{{$train->departure_station}}</td>
                 <td>{{$train->arrival_station}}</td>
